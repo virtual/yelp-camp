@@ -1,0 +1,23 @@
+{
+  "name": "yelp-camp",
+  "version": "1.0.0",
+  "description": "YelpCamp from Colt Steele's Web Dev bootcamp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virtual/yelp-camp.git"
+  },
+  "author": "Jeanine Schoessler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/virtual/yelp-camp/issues"
+  },
+  "homepage": "https://github.com/virtual/yelp-camp#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1"
+  }
+}
