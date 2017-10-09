@@ -15,7 +15,34 @@ let campgrounds = [
   },{
     name: "Red Piny", 
     img: "https://tinyurl.com/y8cujm2z"
-  },
+  },{
+    name: "Salmon Creek SO FUN SO FUN SO FUN", 
+    img: "https://tinyurl.com/yae5xn8j"
+  },{
+    name: "Black Mountain", 
+    img: "https://tinyurl.com/y72fem6d"
+  },{
+    name: "Red Piny", 
+    img: "https://tinyurl.com/y8cujm2z"
+  },{
+    name: "Salmon Creek", 
+    img: "https://tinyurl.com/yae5xn8j"
+  },{
+    name: "Black Mountain", 
+    img: "https://tinyurl.com/y72fem6d"
+  },{
+    name: "Red Piny", 
+    img: "https://tinyurl.com/y8cujm2z"
+  },{
+    name: "Salmon Creek", 
+    img: "https://tinyurl.com/yae5xn8j"
+  },{
+    name: "Black Mountain", 
+    img: "https://tinyurl.com/y72fem6d"
+  },{
+    name: "Red Piny", 
+    img: "https://tinyurl.com/y8cujm2z"
+  }
 ];
 
 app.get("/", function(req, res){
