@@ -1,9 +1,13 @@
 <% include partials/header.ejs %>
-<h1>All Campgrounds</h1>
-
-<% campgrounds.forEach((campground) => { %>
-  <h2><%= campground.name %></h2>
-  <img src="<%= campground.img%>" alt="<%= campground.name %>" />
-<% }); %>
+  <h1>All Campgrounds</h1>
+  <p><a href="campgrounds/new">Add new campground</a></p>
+  <% campgrounds.forEach((campground) => { %>
+    <div>
+      <h4>
+        <%= campground.name %>
+      </h4>
+      <img src="<%= campground.img%>" alt="<%= campground.name %>" />
+    </div>
+    <% }); %>
 <hr/>
 <% include partials/footer.ejs %>
