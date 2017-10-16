@@ -1,70 +1,60 @@
-let express = require("express");
-let app = express();
-let bodyParser = require("body-parser");
+let express = require("express"),
+  app = express(),
+  bodyParser = require("body-parser"),
+  mongoose = require('mongoose');
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.set("port", 5000);
 
-let campgrounds = [  
-  {
-    name: "Salmon Creek", 
-    img: "https://tinyurl.com/yae5xn8j"
-  },{
-    name: "Black Mountain", 
-    img: "https://tinyurl.com/y72fem6d"
-  },{
-    name: "Red Piny", 
-    img: "https://tinyurl.com/y8cujm2z"
-  },{
-    name: "Salmon Creek SO FUN SO FUN SO FUN", 
-    img: "https://tinyurl.com/yae5xn8j"
-  },{
-    name: "Black Mountain", 
-    img: "https://tinyurl.com/y72fem6d"
-  },{
-    name: "Red Piny", 
-    img: "https://tinyurl.com/y8cujm2z"
-  },{
-    name: "Salmon Creek", 
-    img: "https://tinyurl.com/yae5xn8j"
-  },{
-    name: "Black Mountain", 
-    img: "https://tinyurl.com/y72fem6d"
-  },{
-    name: "Red Piny", 
-    img: "https://tinyurl.com/y8cujm2z"
-  },{
-    name: "Salmon Creek", 
-    img: "https://tinyurl.com/yae5xn8j"
-  },{
-    name: "Black Mountain", 
-    img: "https://tinyurl.com/y72fem6d"
-  },{
-    name: "Red Piny", 
-    img: "https://tinyurl.com/y8cujm2z"
-  }
-];
+mongoose.connect('mongodb://localhost:27017/yelp-camp');
+
+var campgroundSchema = new mongoose.Schema({
+  name: String,
+  img: String
+});
+
+var Campground = mongoose.model("Campground", campgroundSchema);
+
+// Campground.create({ 
+//   name: "Salmon Creek", 
+//   img: "https://tinyurl.com/yae5xn8j"}
+//   , function(err, campground){
+//   if (err) console.log(err);
+//   else console.log(campground);
+// });
 
 app.get("/", function(req, res){
   res.render("landing")
 });
 
 app.get("/campgrounds", function(req, res){
-
-  res.render("campgrounds", {campgrounds: campgrounds});
+  // Get all the campgrounds from DB
+  Campground.find({}, function(err, allCampgrounds){
+    if (err) { console.log(err);}
+    else { 
+      res.render("campgrounds", {campgrounds: allCampgrounds})
+    }
+  });
 });
+
 app.get("/campgrounds/new", function(req, res){
   res.render("new.ejs");
 });
 app.post("/campgrounds/", function(req, res) {
   let name = req.body.name;
-  let img = req.body.name;
+  let img = req.body.img;
   let campground = {
     name: name,
     img: img
   };
-  campgrounds.push(campground);
-  res.redirect("/campgrounds");
+  // Create a new campground and save to DB
+  Campground.create(campground, function(err, newlyCreated){
+    if (err) { console.log(err);}
+    else { 
+      // it worked, go back to campgrounds
+      res.redirect("/campgrounds");
+    }
+  })
 });
  
 
